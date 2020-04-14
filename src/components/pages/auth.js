@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Login from "../auth/login"
 import loginImg from "../../../static/assets/auth/login.jpg"
 
 export default class Auth extends Component {
@@ -14,7 +15,7 @@ export default class Auth extends Component {
 
 
                 <div className="right-column">
-                    <h1>Login content goes here...</h1>
+                    <Login />
                 </div>
 
             </div>
