@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Login from "../auth/login"
-import loginImg from "../../../static/assets/auth/login.jpg"
+import React, { Component } from "react";
+import Login from "../auth/login";
+import loginImg from "../../../static/assets/auth/login.jpg";
 
 export default class Auth extends Component {
     render() {
@@ -13,12 +13,10 @@ export default class Auth extends Component {
                     }}
                 />
 
-
                 <div className="right-column">
                     <Login />
                 </div>
-
             </div>
-        )
+        );
     }
 }
