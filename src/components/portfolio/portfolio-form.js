@@ -19,7 +19,7 @@ export default class PortfolioForm extends Component {
             banner_image: "",
             logo: "",
             editMode: false,
-            apiUrl: "https://dallinhumphrey.devcamp.space/portfolio/portfolio_items",
+            apiUrl: "https://jordan.devcamp.space/portfolio/portfolio_items",
             apiAction: "post"
         };
 
@@ -48,21 +48,24 @@ export default class PortfolioForm extends Component {
                 thumb_image_url,
                 banner_image_url,
                 logo_url
-            } = this.props.portfolioToEdit
+            } = this.props.portfolioToEdit;
 
-            this.props.clearPortfolioToEdit()
+            this.props.clearPortfolioToEdit();
 
             this.setState({
-                id: id || "",
+                id: id,
                 name: name || "",
                 description: description || "",
                 category: category || "eCommerce",
                 position: position || "",
                 url: url || "",
                 editMode: true,
-                apiUrl: `https://dallinhumphrey.devcamp.space/portfolio/portfolio_items/${id}`,
-                apiAction: "patch"
-            })
+                apiUrl: `https://jordan.devcamp.space/portfolio/portfolio_items/${id}`,
+                apiAction: "patch",
+                thumb_image: thumb_image_url || "",
+                banner_image: banner_image_url || "",
+                logo: logo_url || ""
+            });
         }
     }
 
@@ -136,15 +139,12 @@ export default class PortfolioForm extends Component {
             data: this.buildForm(),
             withCredentials: true
         })
-
-
             .then(response => {
                 if (this.state.editMode) {
-                    this.props.handleEditFormSubmission()
+                    this.props.handleEditFormSubmission();
                 } else {
                     this.props.handleNewFormSubmission(response.data.portfolio_item);
                 }
-
 
                 this.setState({
                     name: "",
@@ -156,7 +156,7 @@ export default class PortfolioForm extends Component {
                     banner_image: "",
                     logo: "",
                     editMode: false,
-                    apiUrl: "https://dallinhumphrey.devcamp.space/portfolio/portfolio_items",
+                    apiUrl: "https://jordan.devcamp.space/portfolio/portfolio_items",
                     apiAction: "post"
                 });
 
@@ -224,37 +224,56 @@ export default class PortfolioForm extends Component {
                 </div>
 
                 <div className="image-uploaders">
-                    <DropzoneComponent
-                        ref={this.thumbRef}
-                        config={this.componentConfig()}
-                        djsConfig={this.djsConfig()}
-                        eventHandlers={this.handleThumbDrop()}
-                    >
-                        <div className="dz-message">Thumbnail</div>
-                    </DropzoneComponent>
+                    {this.state.thumb_image && this.state.editMode ? (
+                        <div className="portfolio-manager-image-wrapper">
+                            <img src={this.state.thumb_image} />
+                        </div>
+                    ) : (
+                            <DropzoneComponent
+                                ref={this.thumbRef}
+                                config={this.componentConfig()}
+                                djsConfig={this.djsConfig()}
+                                eventHandlers={this.handleThumbDrop()}
+                            >
+                                <div className="dz-message">Thumbnail</div>
+                            </DropzoneComponent>
+                        )}
 
-                    <DropzoneComponent
-                        ref={this.bannerRef}
-                        config={this.componentConfig()}
-                        djsConfig={this.djsConfig()}
-                        eventHandlers={this.handleBannerDrop()}
-                    >
-                        <div className="dz-message">Banner</div>
-                    </DropzoneComponent>
+                    {this.state.banner_image && this.state.editMode ? (
+                        <div className="portfolio-manager-image-wrapper">
+                            <img src={this.state.banner_image} />
+                        </div>
+                    ) : (
+                            <DropzoneComponent
+                                ref={this.bannerRef}
+                                config={this.componentConfig()}
+                                djsConfig={this.djsConfig()}
+                                eventHandlers={this.handleBannerDrop()}
+                            >
+                                <div className="dz-message">Banner</div>
+                            </DropzoneComponent>
+                        )}
 
-                    <DropzoneComponent
-                        ref={this.logoRef}
-                        config={this.componentConfig()}
-                        djsConfig={this.djsConfig()}
-                        eventHandlers={this.handleLogoDrop()}
-                    >
-                        <div className="dz-message">Logo</div>
-                    </DropzoneComponent>
-
+                    {this.state.logo && this.state.editMode ? (
+                        <div className="portfolio-manager-image-wrapper">
+                            <img src={this.state.logo} />
+                        </div>
+                    ) : (
+                            <DropzoneComponent
+                                ref={this.logoRef}
+                                config={this.componentConfig()}
+                                djsConfig={this.djsConfig()}
+                                eventHandlers={this.handleLogoDrop()}
+                            >
+                                <div className="dz-message">Logo</div>
+                            </DropzoneComponent>
+                        )}
                 </div>
 
                 <div>
-                    <button className="btn" type="submit">Save</button>
+                    <button className="btn" type="submit">
+                        Save
+          </button>
                 </div>
             </form>
         );
