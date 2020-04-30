@@ -77,7 +77,7 @@ export default class PortfolioForm extends Component {
         position: position || "",
         url: url || "",
         editMode: true,
-        apiUrl: `https://dallinhumphrey.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiUrl: `https://dallinhumphrey.devcamp.space/portfolio/portfolio/${id}`,
         apiAction: "patch",
         thumb_image_url: thumb_image_url || "",
         banner_image_url: banner_image_url || "",
