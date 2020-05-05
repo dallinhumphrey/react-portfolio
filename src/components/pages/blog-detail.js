@@ -61,7 +61,6 @@ export default class BlogDetail extends Component {
   componentDidMount() {
     this.getBlogItem();
   }
-
   render() {
     const {
       title,
