@@ -39,6 +39,7 @@ export default class PortfolioManager extends Component {
         `https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
         { withCredentials: true }
       )
+
       .then((response) => {
         this.setState({
           portfolioItems: this.state.portfolioItems.filter((item) => {
@@ -70,7 +71,7 @@ export default class PortfolioManager extends Component {
   getPortfolioItems() {
     axios
       .get(
-        `https://dallinhumphrey.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
+        "https://dallinhumphrey.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc",
         {
           withCredentials: true,
         }
