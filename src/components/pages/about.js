@@ -13,9 +13,10 @@ export default function () {
         }}
       />
       <div className="right-column">
-        My Interests ● Exploring, adventuring, and people. ● Building Lego’s and
-        Warhammer figures with my son. ● Cooking with my wife. ● Listening to
-        music and dancing with my daughter. ● Landscaping and gardening
+        A few of my favorite things are Exploring, adventuring, and people.
+        Building Lego’s and Warhammer figures with my son. Cooking with my wife.
+        Listening to music and dancing with my daughter. Landscaping and
+        gardening
       </div>
     </div>
   );
